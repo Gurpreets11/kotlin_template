@@ -5,10 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.preet.kotlintemplate.base.BaseViewModel
 import com.preet.kotlintemplate.network.NetworkResult
+import com.preet.kotlintemplate.repository.AuthRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginViewModel : BaseViewModel() {
+
+    private val repository = AuthRepository()
 
     private val _loginState = MutableLiveData<NetworkResult<String>>()
 
@@ -20,13 +23,9 @@ class LoginViewModel : BaseViewModel() {
             // Simulate API call
             delay(2000)
 
-            if (email == "admin" && password == "1234") {
-                _loginState.value =
-                    NetworkResult.Success("Login Successful")
-            } else {
-                _loginState.value =
-                    NetworkResult.Error("Invalid Credentials")
-            }
+            val result = repository.login(email, password)
+
+            _loginState.value = result
         }
     }
 }

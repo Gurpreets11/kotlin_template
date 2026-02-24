@@ -1,5 +1,6 @@
 package com.preet.kotlintemplate.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.preet.kotlintemplate.base.BaseActivity
@@ -8,9 +9,9 @@ import com.preet.kotlintemplate.network.NetworkResult
 import com.preet.kotlintemplate.viewmodel.LoginViewModel
 
 
-class LoginActivity : BaseActivity() {
+class LoginActivity :
+    BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate) {
 
-    private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,13 @@ class LoginActivity : BaseActivity() {
             val password = binding.etPassword.text.toString()
 
             viewModel.login(email, password)
+        }
+
+        binding.tvGoToSignup.setOnClickListener {
+
+            startActivity(
+                Intent(this, SignupActivity::class.java)
+            )
         }
     }
 
