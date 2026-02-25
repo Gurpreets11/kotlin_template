@@ -48,9 +48,9 @@ abstract class BaseActivity<VB : ViewBinding>(
 
     // 🔥 Common Navigation Helper
 
-    protected inline fun <reified T> navigateTo(finishCurrent: Boolean = false) {
+   /* protected inline fun <reified T> navigateTo(finishCurrent: Boolean = false) {
         val intent = android.content.Intent(this, T::class.java)
         startActivity(intent)
         if (finishCurrent) finish()
-    }
+    }*/
 }

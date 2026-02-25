@@ -6,6 +6,7 @@ import android.os.Looper
 import androidx.lifecycle.lifecycleScope
 import com.preet.kotlintemplate.base.BaseActivity
 import com.preet.kotlintemplate.databinding.ActivitySplashBinding
+import com.preet.kotlintemplate.utils.Navigator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -14,7 +15,11 @@ class SplashActivity :
     override fun setupUI() {
         lifecycleScope.launch {
             delay(2000)
-            navigateTo<LoginActivity>(finishCurrent = true)
+            //navigateTo<LoginActivity>(finishCurrent = true)
+            Navigator.goTo<LoginActivity>(
+                context = this@SplashActivity,
+                finishCurrent = true
+            )
         }
     }
     override fun observeViewModel() {

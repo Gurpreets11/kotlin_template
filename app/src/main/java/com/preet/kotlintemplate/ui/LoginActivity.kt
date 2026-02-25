@@ -5,7 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.preet.kotlintemplate.base.BaseActivity
 import com.preet.kotlintemplate.databinding.ActivityLoginBinding
+import com.preet.kotlintemplate.model.User
 import com.preet.kotlintemplate.network.NetworkResult
+import com.preet.kotlintemplate.utils.AppKeys
+import com.preet.kotlintemplate.utils.Navigator
 import com.preet.kotlintemplate.viewmodel.LoginViewModel
 
 
@@ -30,7 +33,8 @@ class LoginActivity :
         }
 
         binding.tvGoToSignup.setOnClickListener {
-            navigateTo<SignupActivity>()
+            //navigateTo<SignupActivity>()
+            Navigator.goTo<SignupActivity>(this)
         }
     }
 
@@ -43,7 +47,40 @@ class LoginActivity :
                 is NetworkResult.Success -> {
                     hideLoading()
                     println(result.data)
-                    navigateTo<MainActivity>()
+                    //navigateTo<MainActivity>()
+
+                    //option 1 .. with no data..
+//                    Navigator.goToAndClearStack<MainActivity>(this)
+
+
+                    // option 2 with single data as string..
+                    /*Navigator.goToWithString<MainActivity>(
+                        context = this,
+                        key = AppKeys.USER_ID,
+                        value = "12345",
+                        finishCurrent = true
+                    )*/
+
+
+                    // option 3 . with bundle data..
+                    val user = User("1", "Gurpreet")
+
+                    Navigator.goToWithParcelable<MainActivity>(
+                        context = this,
+                        key = AppKeys.USER_OBJECT,
+                        value = user
+                    )
+
+                    // option 4 .. go with multiple data..
+
+                    Navigator.goToWithData<MainActivity>(
+                        context = this,
+                        finishCurrent = true,
+                        clearStack = true,
+                        AppKeys.USER_ID to "101",
+                        AppKeys.PRODUCT_ID to "555",
+                        AppKeys.VENDOR_ID to "999"
+                    )
                 }
                 is NetworkResult.Error -> {
                     hideLoading()
