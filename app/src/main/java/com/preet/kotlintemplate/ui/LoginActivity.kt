@@ -30,28 +30,23 @@ class LoginActivity :
         }
 
         binding.tvGoToSignup.setOnClickListener {
-
-            startActivity(
-                Intent(this, SignupActivity::class.java)
-            )
+            navigateTo<SignupActivity>()
         }
     }
 
     override fun observeViewModel() {
-
         viewModel.loginState.observe(this) { result ->
-
             when (result) {
-
                 is NetworkResult.Loading -> {
-                    println("Loading...")
+                    showLoading()
                 }
-
                 is NetworkResult.Success -> {
+                    hideLoading()
                     println(result.data)
+                    navigateTo<MainActivity>()
                 }
-
                 is NetworkResult.Error -> {
+                    hideLoading()
                     println(result.message)
                 }
             }

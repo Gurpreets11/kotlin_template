@@ -11,20 +11,12 @@ import kotlinx.coroutines.launch
 
 class SplashActivity :
     BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
-
     override fun setupUI() {
-
         lifecycleScope.launch {
-
             delay(2000)
-
-            startActivity(
-                Intent(this@SplashActivity, LoginActivity::class.java)
-            )
-            finish()
+            navigateTo<LoginActivity>(finishCurrent = true)
         }
     }
-
     override fun observeViewModel() {
         // No ViewModel needed here
     }
