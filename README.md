@@ -1,126 +1,141 @@
 # android_template
 
-## 📱 Android MVVM Base Project
+## 🚀 PreetBase – Android Kotlin Template
 
-This project is built using MVVM architecture with clean structure and proper API handling.
+A scalable Android template built using Kotlin + XML + ViewBinding following MVVM architecture and clean coding principles.
 
-The goal is to keep the code scalable, maintainable, and easy to extend.
+This project is designed to serve as a reusable base for future Android applications while strengthening Kotlin fundamentals.
 
-### 🚀 What Has Been Implemented
+### 📌 About This Project
 
-**🔹 API Setup**
+PreetBase is a custom-built Android template created to:
 
-   - Retrofit API client setup
-   - Base URL configuration
-   - API Service interface created
-   - Centralized API calling
-   
+   - Master Kotlin by building architecture from the ground up
+   - Avoid dependency on third-party starter templates
+   - Follow clean, scalable, production-level structure
+   - Serve as a reusable foundation for future Android projects
 
-**🔹 Common API Response Model**
+This project reflects strong understanding of Android fundamentals, architecture design, and Kotlin best practices.
 
-   - Created BaseResponse class
-   - Handles:
-		- statusCode
-		- statusMessage
-		- data
-   - Added isSuccess() method (statusCode == 200)
-   
-**🔹 Repository Layer**
+ 
+### 🛠 Tech Stack
 
-   - Created BaseRepository
-   - All API calls pass through it
-   - Handles:
-	   - Loading state
-	   - HTTP errors (401, 500 etc.)
-	   - Parsing errorBody()
-	   - Business errors (statusCode != 200)
-	   - Empty data handling
-   - Feature repository:
-       - AuthRepository
-	   
+   - Language: Kotlin
+   - UI: XML + ViewBinding
+   - Architecture: MVVM
+   - Async Handling: Kotlin Coroutines
+   - State Management: Sealed Classes
+   - Navigation: Custom centralized Navigator
+   - Data Passing: Intent + Parcelable
+   - Project Structure: Modular & clean package hierarchy
+
+### 🏗 Architecture Philosophy
+
+This template follows:
+
+   - ✅ MVVM (Model-View-ViewModel)
+   - ✅ Repository Pattern
+   - ✅ Single Responsibility Principle
+   - ✅ Separation of Concerns
+   - ✅ Scalable Navigation Design
+   - ✅ Reusable Base Components
+
+The goal is not just to “make it work” — but to make it maintainable and extensible.
+
+### 🏗 Architecture Overview
+
+The project follows a clean and modular structure:
+```
+com.preetbase.app
+│
+├── base          → BaseActivity, BaseViewModel
+├── ui            → Splash, Login, Signup
+├── repository    → Business logic layer
+├── network       → Network state handling (Sealed class)
+├── utils         → Navigator, AppKeys
+└── model         → Data models (Parcelable)
+```
+
+### ✅ Features Implemented
+**🔹 Base Setup**
+
+   - Generic BaseActivity<VB : ViewBinding>
+   - Common loading dialog handling
+   - Reusable structure for all activities
+   - Centralized lifecycle handling
+
 **🔹 ViewModel Layer**
 
-   - Created AuthViewModel
-   - ViewModel calls repository
-   - UI observes LiveData
-   - No API logic inside Activity
+   - BaseViewModel with CoroutineScope
+   - Exception handling
+   - Clean separation of UI & business logic
 
-**🔹 ApiResult Wrapper**
+**🔹 State Management**
 
-   - Created a common result class to manage:
-		- LOADING
-		- SUCCESS
-		- ERROR
-   - This helps UI react properly based on API state.
+   - NetworkResult sealed class:
+      - Loading
+      - Success
+      - Error
 
-**🔹 Generic ViewModel Factory**
+**🔹 Repository Pattern**
 
-   - Single AppViewModelFactory
-   - No multiple factory classes
-   - Scalable for unlimited ViewModels
-   - Uses Map + Supplier approach
+   - AuthRepository implementation
+   - Simulated suspend API calls
+   - Business logic separated from ViewModel
 
-**🔹 ViewModel Initialization from Application Class**
+**🔹 Navigation System**
 
-   - ViewModels registered in MyApplication
-   - Factory created once
-   - Activities get ViewModel using:
-    
-	new ViewModelProvider(this, factory).get(AuthViewModel.class);
+Centralized Navigator utility supports:
 
- This avoids creating separate factories.
+   - Simple navigation
+   - Finish current activity
+   - Clear back stack
+   - Passing single value
+   - Passing multiple values (vararg Pair)
+   - Passing Parcelable object
 
-### 📱 Screens Implemented
+**🔹 Screens Implemented**
 
-   - ✅ Splash Activity
-   - ✅ Login Activity
-   - ✅ Signup Activity
-   - ✅ Main Screen (currently blank)
+   - Splash Screen (Coroutine-based delay)
+   - Login Screen (MVVM integrated)
+   - Signup Screen
 
-### 🛠 Utility Classes
+### 🧠 Kotlin Concepts Applied
 
-   - ✅ NetworkUtil → Check internet connection
-   - ✅ SharedPref Manager → Store token & user data
-   - ✅ AppToast → Reusable toast class
-   - ✅ AppLogger → Reusable logger class
-   - ✅ Validation → Input validation methods
+   - Generics
+   - Sealed Classes
+   - Coroutines (launch, delay, suspend)
+   - inline + reified
+   - vararg
+   - Singleton (object)
+   - @Parcelize
+   - Function references (::inflate)
 
-### 🆕 Improvements Done Recently
+### 🎯 Project Goals
 
-   - Improved BaseRepository
-   - Added proper HTTP 401 handling
-   - Parsed response.errorBody() correctly
-   - Fixed login error not showing in UI
-   - Cleaned ViewModel logic
-   - Removed unnecessary null checks from UI
-   - Moved API validation responsibility to Repository
-   - Improved overall scalability
+   - Build a reusable Android template
+   - Strengthen Kotlin understanding
+   - Follow scalable architecture
+   - Avoid third-party template dependency
+   - Prepare production-ready foundation
 
-## 🏗 Current Flow
+### 🚀 Future Improvements
 
-	Activity
-		↓
-	ViewModel
-		↓
-	Repository
-		↓
-	BaseRepository
-		↓
-	Retrofit API
+   - Migrate to StateFlow
+   - Add Hilt (Dependency Injection)
+   - Retrofit Integration
+   - BaseFragment implementation
+   - Global error handler
+   - Logging system
 
+### 📦 Why This Template?
 
-## 🎯 Current Project Status
+Instead of using ready-made templates, this project is built from scratch to:
+   - Fully understand Kotlin
+   - Design flexible navigation
+   - Implement clean architecture
+   - Create long-term reusable foundation
 
-   - Clean MVVM structure
-   - Centralized API handling
-   - Proper error management
-   - Scalable ViewModel creation
-   - Internet checking implemented
-   - Token storage implemented
-   - Login flow working
-   - Invalid login error handled correctly
-   
-   
-### 👨‍💻 Project Type
+### 📜 License
 
-	Android App (Java) – MVVM + Repository Pattern   
+This project is open for learning and reuse. 
