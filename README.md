@@ -136,6 +136,21 @@ Instead of using ready-made templates, this project is built from scratch to:
    - Implement clean architecture
    - Create long-term reusable foundation
 
+### 🚀 Latest Enhancements
+
+   - Upgraded Signup screen to full Material Design (TextInputLayout + MaterialButtons)
+   - Added Password visibility toggle
+   - Implemented Confirm Password match validation
+   - Built dynamic Password Strength Indicator (Weak / Medium / Strong)
+   - Progress bar with dynamic color change
+   - Added DOB DatePicker with 18+ age validation
+   - Created reusable utility classes:
+   - PasswordStrengthUtil
+   - AgeUtil
+   - Improved MVVM validation structure using ValidationResult & FieldType
+   - Enhanced UX with structured error handling and cleaner UI design
+
+
 ### 📜 License
 
 This project is open for learning and reuse. 
