@@ -13,16 +13,52 @@ import kotlinx.coroutines.launch
 class SplashActivity :
     BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
     override fun setupUI() {
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             delay(2000)
             //navigateTo<LoginActivity>(finishCurrent = true)
             Navigator.goTo<LoginActivity>(
                 context = this@SplashActivity,
                 finishCurrent = true
             )
-        }
+        }*/
+
+        startAnimation();
     }
     override fun observeViewModel() {
         // No ViewModel needed here
     }
+
+
+    private fun startAnimation() {
+
+        // Logo animation
+        binding.ivLogo.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(900)
+            .start()
+
+        // App name fade
+        binding.tvAppName.animate()
+            .alpha(1f)
+            .setStartDelay(400)
+            .setDuration(800)
+            .start()
+
+        // Tagline fade
+        binding.tvTagline.animate()
+            .alpha(1f)
+            .setStartDelay(700)
+            .setDuration(800)
+            .start()
+
+        // Navigate after delay
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, LoginActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            finish()
+        }, 3200)
+    }
+
 }
