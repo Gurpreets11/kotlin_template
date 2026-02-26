@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="gradient_start">#F8FAFC</color>
+    <color name="gradient_end">#E2E8F0</color>
+    <color name="login_card_background">#FFFFFF</color>
+    <color name="card_stroke">#E2E8F0</color>
 </resources>
