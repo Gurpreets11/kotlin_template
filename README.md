@@ -151,6 +151,13 @@ Instead of using ready-made templates, this project is built from scratch to:
    - Enhanced UX with structured error handling and cleaner UI design
 
 
+### 🚀 Today’s Updates
+
+   - Redesigned Login screen with gradient background, elevated Material Card, and modern UI components.
+   - Enhanced Splash screen with custom gradient design and logo animation experiments.
+   - Improved theme structure with light/dark mode adaptive colors.
+   - Refined UI architecture for cleaner design consistency and better user experience.
+
 ### 📜 License
 
 This project is open for learning and reuse. 
