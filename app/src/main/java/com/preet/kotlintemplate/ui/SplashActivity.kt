@@ -1,6 +1,8 @@
 package com.preet.kotlintemplate.ui
 
+import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +23,9 @@ class SplashActivity :
                 finishCurrent = true
             )
         }*/
+
+        val background = binding.root.background as AnimationDrawable
+        background.start()
 
         startAnimation();
     }
@@ -58,7 +63,25 @@ class SplashActivity :
             startActivity(Intent(this, LoginActivity::class.java))
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
-        }, 3200)
+        }, 4200)
+
+        startFloatingAnimation()
+    }
+
+
+    private fun startFloatingAnimation() {
+        val animator = ObjectAnimator.ofFloat(
+            binding.ivLogo,
+            "translationY",
+            -20f,
+            20f
+        ).apply {
+            duration = 2000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }
+
+        animator.start()
     }
 
 }
